@@ -1,0 +1,26 @@
+{
+  "name": "ng-simple-sidebar",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/secanis/ng-simple-sidebar.git"
+  },
+  "author": {
+    "name": "Matthias Baldi",
+    "email": "matthias.baldi@secanis.ch"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://bitbucket.org/secanis/ng-simple-sidebar.git/issues"
+  },
+  "module": "ng-simple-sidebar.js",
+  "typings": "ng-simple-sidebar.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

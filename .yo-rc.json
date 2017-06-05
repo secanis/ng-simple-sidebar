@@ -1,0 +1,7 @@
+{
+  "generator-angular2-library": {
+    "promptValues": {
+      "gitRepositoryUrl": "https://bitbucket.org/secanis/ng-simple-sidebar.git"
+    }
+  }
+}
