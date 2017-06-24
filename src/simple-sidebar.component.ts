@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { SimpleSidebarService } from './simple-sidebar.service'
-import { SimpleSidebarItem } from './models/simple-sidebar-item.model'
+import { SimpleSidebarService } from './simple-sidebar.service';
+import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
 
 @Component({
     selector: 'simple-sidebar',
@@ -15,7 +15,8 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model'
                     <span *ngIf="this.getSettingsCloseIcon()"><i class="{{this.getSettingsCloseIcon()}}"></i></span>
                 </small>
                 <h3 class="ass-aside-menu-title" ng-bind="title"></h3>
-                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item" *ngFor="let item of items">
+                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item" 
+                        *ngFor="let item of items">
                     <i *ngIf="item.icon" class="{{item.icon}} ass-aside-menu-icon"></i>
                     {{item.name}}
                 </a>

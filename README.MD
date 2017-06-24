@@ -1,5 +1,9 @@
 # ng-simple-sidebar
 
+## Demo
+
+**is coming soon**
+
 ## Installation
 
 To install this library, run:
@@ -25,19 +29,20 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'ng-simple-sidebar';
+import { SimpleSidebar, SimpleSidebarService } from 'ng-simple-sidebar';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    SimpleSidebar,
     BrowserModule,
 
     // Specify your library as an import
     LibraryModule
   ],
-  providers: [],
+  providers: [SimpleSidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -47,10 +52,9 @@ Once your library is imported, you can use its components, directives and pipes 
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+<div class="navbar">
+    <simple-sidebar></simple-sidebar>
+</div>
 ```
 
 ## Development

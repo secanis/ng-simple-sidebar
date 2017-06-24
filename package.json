@@ -58,7 +58,7 @@
     "run-sequence": "^1.2.2",
     "rxjs": "^5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
+    "tslint": "^4.5.1",
     "typescript": "~2.2.0",
     "zone.js": "^0.8.4"
   },
