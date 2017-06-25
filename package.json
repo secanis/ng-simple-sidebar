@@ -1,6 +1,6 @@
 {
   "name": "ng-simple-sidebar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -20,8 +20,11 @@
     "email": "matthias.baldi@secanis.ch"
   },
   "keywords": [
-    "angular"
+    "angular2",
+    "angular4",
+    "sidebar"
   ],
+  "description": "A simple angular component to generate a sidebar with a hamburger menu.",
   "license": "MIT",
   "bugs": {
     "url": "https://bitbucket.org/secanis/ng-simple-sidebar.git/issues"
