@@ -27,10 +27,18 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
     `,
     styleUrls: ['simple-sidebar.css']
 })
+/**
+ * Simple Sidebar component with the template
+ */
 export class SimpleSidebarComponent {
     public slide: string;
     public items: Array<SimpleSidebarItem> = [];
 
+    /**
+     * Initialize the defaults
+     * 
+     * @param simpleSidebarService 
+     */
     constructor(private simpleSidebarService: SimpleSidebarService) {
         if (this.getState()) {
             this.slide = 'in';
@@ -38,25 +46,40 @@ export class SimpleSidebarComponent {
         this.items = this.simpleSidebarService.getItems();
     }
 
-    public openSidebar() {
+    /**
+     * Open the sidebar an show slide effect
+     */
+    public openSidebar(): void {
         this.simpleSidebarService.sidebarState(true);
         this.slide = 'in';
     }
 
-    public closeSidebar() {
+    /**
+     * Close the sidebar an show slide effect
+     */
+    public closeSidebar(): void {
         this.simpleSidebarService.sidebarState(false);
         this.slide = 'out';
     }
 
-    public getSettingsCloseIcon() {
+    /**
+     * Get the close icon from the settings
+     */
+    public getSettingsCloseIcon(): string {
         return this.simpleSidebarService.getSettings().closeIcon;
     }
 
-    public getCloseState() {
+    /**
+     * Get close state of the sidebar
+     */
+    public getCloseState(): boolean {
         return this.simpleSidebarService.getSettings().close;
     }
 
-    public getState() {
+    /**
+     * Get the sidebar state
+     */
+    public getState(): boolean {
         return this.simpleSidebarService.getSettings().state;
     }
 

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { SimpleSidebarSettings } from './models/simple-sidebar-settings.model';
 import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
 
+/**
+ * Sidebar service: it returns configured settings and the actual state of the sidebar
+ */
 @Injectable()
 export class SimpleSidebarService {
     private simpleSidebarSettings: SimpleSidebarSettings;
@@ -11,12 +14,22 @@ export class SimpleSidebarService {
 
     constructor(private router: Router) { }
 
-    public setSettings(settingsObj) {
+    /**
+     * Set your custom settings for the sidebar
+     * 
+     * @param settingsObj
+     */
+    public setSettings(settingsObj): void {
         this.simpleSidebarSettings = new SimpleSidebarSettings(settingsObj.state, settingsObj.title,
             settingsObj.close, settingsObj.closeItem);
     }
 
-    public addItem(item) {
+    /**
+     * Add an item to the sidebar array
+     * 
+     * @param item 
+     */
+    public addItem(item): void {
         this.simpleSidebarItems.push(new SimpleSidebarItem(
             item.name,
             item.route,
@@ -25,19 +38,26 @@ export class SimpleSidebarService {
         ));
     }
 
-    public getItems() {
+    /**
+     * Returns all items to create the sidebar list
+     */
+    public getItems(): Array<SimpleSidebarItem> {
         return this.simpleSidebarItems;
     }
 
+    /**
+     * Set's the actual sidebar state
+     * 
+     * @param val 
+     */
     public sidebarState(val: boolean): void {
         this.simpleSidebarSettings.state = val;
     }
 
+    /**
+     * Returns the configured settings object
+     */
     public getSettings(): SimpleSidebarSettings {
         return this.simpleSidebarSettings;
-    }
-
-    public getSidebarItems(): Array<SimpleSidebarItem> {
-        return this.simpleSidebarItems;
     }
 }
