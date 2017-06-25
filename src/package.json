@@ -1,6 +1,6 @@
 {
   "name": "ng-simple-sidebar",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/secanis/ng-simple-sidebar.git"
@@ -10,8 +10,11 @@
     "email": "matthias.baldi@secanis.ch"
   },
   "keywords": [
-    "angular"
+    "angular2",
+    "angular4",
+    "sidebar"
   ],
+  "description": "A simple angular component to generate a sidebar with a hamburger menu.",
   "license": "MIT",
   "bugs": {
     "url": "https://bitbucket.org/secanis/ng-simple-sidebar.git/issues"
