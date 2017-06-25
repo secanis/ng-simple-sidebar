@@ -12,15 +12,7 @@ To install this library, run:
 $ npm install ng-simple-sidebar --save
 ```
 
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install ng-simple-sidebar
-```
-
-and then from your Angular `AppModule`:
+and then from your angular `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -48,7 +40,7 @@ import { SimpleSidebar, SimpleSidebarService } from 'ng-simple-sidebar';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Once your library is imported, you can use it in your angular application:
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
@@ -57,20 +49,35 @@ Once your library is imported, you can use its components, directives and pipes 
 </div>
 ```
 
+```js
+import { SimpleSidebarService } from 'ng-simple-sidebar';
+
+export class AppComponent {
+    constructor(private simpleSidebarService: SimpleSidebarService) {
+        // for the icons you can use FontAwesome or every other font library you want.
+        this.simpleSidebarService.setSettings({close: true, closeItem: 'fa fa-close fa-2x'});
+        this.simpleSidebarService.addItem({name: 'link one', icon: 'fa fa-home', route: '/foo', target: ''});
+        this.simpleSidebarService.addItem({name: 'link two', icon: 'fa fa-gavel', route: '/bar', target: ''});
+    }
+}
+```
+
 ## Development
 
 To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
 
 ```bash
-$ npm run build
+npm run build
 ```
 
 To lint all `*.ts` files:
 
 ```bash
-$ npm run lint
+npm run lint
 ```
 
-## License
+## License and Thanks
 
 MIT © [Matthias Baldi](mailto:matthias.baldi@secanis.ch)
+
+ng-simple-sidebar is powerd by [https://github.com/jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library)
