@@ -16,18 +16,18 @@ export class SimpleSidebarService {
 
     /**
      * Set your custom settings for the sidebar
-     * 
+     *
      * @param settingsObj
      */
     public setSettings(settingsObj): void {
         this.simpleSidebarSettings = new SimpleSidebarSettings(settingsObj.state, settingsObj.title,
-            settingsObj.close, settingsObj.closeItem);
+            settingsObj.close, settingsObj.closeItem, settingsObj.docked);
     }
 
     /**
      * Add an item to the sidebar array
-     * 
-     * @param item 
+     *
+     * @param item
      */
     public addItem(item): void {
         this.simpleSidebarItems.push(new SimpleSidebarItem(
@@ -47,8 +47,8 @@ export class SimpleSidebarService {
 
     /**
      * Set's the actual sidebar state
-     * 
-     * @param val 
+     *
+     * @param val
      */
     public sidebarState(val: boolean): void {
         this.simpleSidebarSettings.state = val;

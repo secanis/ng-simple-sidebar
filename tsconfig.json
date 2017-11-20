@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["es6", "dom"],
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "skipLibCheck": true,
-    "types": []
+    "sourceMap": true,
+    "noEmitHelpers": true
+  },
+  "compileOnSave": true,
+  "buildOnSave": true,
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
   }
 }

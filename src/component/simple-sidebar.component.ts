@@ -15,17 +15,25 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
                     <span *ngIf="this.getSettingsCloseIcon()"><i class="{{this.getSettingsCloseIcon()}}"></i></span>
                 </small>
                 <h3 class="ass-aside-menu-title" ng-bind="title"></h3>
-                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item" 
+                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
                         *ngFor="let item of items">
                     <i *ngIf="item.icon" class="{{item.icon}} ass-aside-menu-icon"></i>
                     {{item.name}}
                 </a>
             </aside>
-            <div *ngIf="this.getState()" class="ass-aside-overlay" (click)="closeSidebar()"></div>
+            <aside *ngIf="this.simpleSidebarService.getSettings().docked"
+                    class="ass-aside-dock">
+                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
+                        *ngFor="let item of items">
+                    <i *ngIf="item.icon" class="{{item.icon}} fa-2x ass-aside-menu-icon"></i>
+                </a>
+                <div class="ass-aside-dock-expand-icon" (click)="openSidebar()"><i class="fa fa-arrows-h"></i></div>
+            </aside>
+            <div *ngIf="this.getState() && !this.simpleSidebarService.getSettings().docked" class="ass-aside-overlay"
+                    (click)="closeSidebar()"></div>
         </div>
-        
     `,
-    styleUrls: ['simple-sidebar.css']
+    styles: [require('./simple-sidebar.css').toString()]
 })
 /**
  * Simple Sidebar component with the template
@@ -36,8 +44,8 @@ export class SimpleSidebarComponent {
 
     /**
      * Initialize the defaults
-     * 
-     * @param simpleSidebarService 
+     *
+     * @param simpleSidebarService
      */
     constructor(private simpleSidebarService: SimpleSidebarService) {
         if (this.getState()) {
