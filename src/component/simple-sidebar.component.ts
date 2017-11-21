@@ -16,18 +16,28 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
                 </small>
                 <h3 class="ass-aside-menu-title" ng-bind="title"></h3>
                 <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
-                        *ngFor="let item of items">
+                        *ngFor="let item of itemsTop">
                     <i *ngIf="item.icon" class="{{item.icon}} ass-aside-menu-icon"></i>
                     {{item.name}}
                 </a>
             </aside>
             <aside *ngIf="this.simpleSidebarService.getSettings().docked"
                     class="ass-aside-dock">
-                <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
-                        *ngFor="let item of items">
-                    <i *ngIf="item.icon" class="{{item.icon}} fa-2x ass-aside-menu-icon"></i>
-                </a>
-                <div class="ass-aside-dock-expand-icon" (click)="openSidebar()"><i class="fa fa-arrows-h"></i></div>
+                <div class="ass-aside-dock-container">
+                    <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
+                            *ngFor="let item of itemsTop" title="{{item.name}}">
+                        <i *ngIf="item.icon" class="{{item.icon}} fa-2x ass-aside-menu-icon"></i>
+                    </a>
+                </div>
+                <div class="ass-aside-dock-container ass-aside-dock-container-end">
+                    <a href="{{item.route}}" target="{{item.target}}" (click)="closeSidebar()" class="ass-aside-menu-item"
+                            *ngFor="let item of itemsBottom" title="{{item.name}}">
+                        <i *ngIf="item.icon" class="{{item.icon}} fa-2x ass-aside-menu-icon"></i>
+                    </a>
+                    <span class="ass-aside-dock-expand-icon" (click)="openSidebar()">
+                        <i class="fa fa-bars fa-2x"></i>
+                    </span>
+                </div>
             </aside>
             <div *ngIf="this.getState() && !this.simpleSidebarService.getSettings().docked" class="ass-aside-overlay"
                     (click)="closeSidebar()"></div>
@@ -40,7 +50,8 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
  */
 export class SimpleSidebarComponent {
     public slide: string;
-    public items: Array<SimpleSidebarItem> = [];
+    public itemsTop: Array<SimpleSidebarItem> = [];
+    public itemsBottom: Array<SimpleSidebarItem> = [];
 
     /**
      * Initialize the defaults
@@ -51,7 +62,14 @@ export class SimpleSidebarComponent {
         if (this.getState()) {
             this.slide = 'in';
         }
-        this.items = this.simpleSidebarService.getItems();
+        let items = this.simpleSidebarService.getItems();
+        items.forEach((i) => {
+            if (i.position === 'top') {
+                this.itemsTop.push(i);
+            } else {
+                this.itemsBottom.push(i);
+            }
+        });
     }
 
     /**

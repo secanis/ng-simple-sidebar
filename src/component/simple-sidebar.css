@@ -1,4 +1,5 @@
 .ass-menu-button {
+    position: fixed;
     margin-top: 10px;
     margin-left: 30px;
     width: 30px;
@@ -35,28 +36,38 @@
 
 .ass-aside-dock {
     position: fixed;
-    display: block;
+    display: flex;
+    flex-direction: column;
     left: 0px;
     top: 0px;
-    width: 2.5vw;
-    height: 100vh;
-    padding: 25px;
+    height: calc(100vh - 30px);
+    padding: 15px;
+    padding-left: 20px;
     background-color: #eee;
     color: #000;
 }
 
+.ass-aside-dock .ass-aside-dock-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.ass-aside-dock-container-end {
+    justify-content: flex-end;
+}
+
 .ass-aside-dock .ass-aside-menu-item {
     border: none;
-    height: 50px;
-    line-height: 50px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.ass-aside-dock .ass-aside-menu-item:last-of-type {
+    padding-bottom: 30px;
 }
 
 .ass-aside-dock-expand-icon {
-    position: fixed;
-    top: 10px;
-    left: 32px;
-    height: 20px;
-    width: 20px;
     cursor: pointer;
 }
 

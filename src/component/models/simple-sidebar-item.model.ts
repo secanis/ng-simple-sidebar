@@ -18,11 +18,16 @@ export class SimpleSidebarItem {
      * item target (optional, equals to the HTML5 target of an "a" tag)
      */
     target: string;
+    /**
+     * items position (optional, container top or botton, default top)
+     */
+    position: string;
 
-    constructor(name: string, route: string, icon: string, target: string) {
+    constructor(name: string, route: string, icon: string, target: string, position: string) {
         this.name = name;
         this.route = route;
         this.icon = icon;
         this.target = target;
+        this.position = position || 'top';
     }
 }

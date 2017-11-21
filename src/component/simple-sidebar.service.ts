@@ -34,7 +34,8 @@ export class SimpleSidebarService {
             item.name,
             item.route,
             item.icon,
-            item.target
+            item.target,
+            item.position
         ));
     }
 
