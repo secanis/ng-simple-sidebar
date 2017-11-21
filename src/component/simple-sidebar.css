@@ -20,6 +20,12 @@
     color: #000;
 }
 
+.ass-aside-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
 .ass-aside-menu-title {
     text-transform: uppercase;
 }
@@ -47,13 +53,13 @@
     color: #000;
 }
 
-.ass-aside-dock .ass-aside-dock-container {
+.ass-aside-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.ass-aside-dock-container-end {
+.ass-aside-container-end {
     justify-content: flex-end;
 }
 
@@ -61,10 +67,6 @@
     border: none;
     padding-top: 8px;
     padding-bottom: 8px;
-}
-
-.ass-aside-dock .ass-aside-menu-item:last-of-type {
-    padding-bottom: 30px;
 }
 
 .ass-aside-dock-expand-icon {

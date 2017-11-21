@@ -12,10 +12,11 @@ import '../style/style.css';
 export class AppComponent implements OnInit {
 
     constructor(private simpleSidebarService: SimpleSidebarService) {
-        this.simpleSidebarService.setSettings({close: true, closeItem: 'fa fa-close fa-2x', docked: false});
+        this.simpleSidebarService.setSettings({close: true, closeItem: 'fa fa-close fa-2x', title: "yey", docked: true});
         this.simpleSidebarService.addItem({ name: 'Microsoft', icon: 'fa fa-windows', route: 'https://microsoft.com', target: '_blank', position: 'top'});
         this.simpleSidebarService.addItem({ name: 'Google', icon: 'fa fa-google', route: 'https://google.com', target: '_blank', position: 'top'});
         this.simpleSidebarService.addItem({name: 'Apple', icon: 'fa fa-apple', route: 'https://apple.com', target: '_blank', position: 'top'});
+        this.simpleSidebarService.addItem({name: 'MyAccount', icon: 'fa fa-user', route: '', target: '', position: 'bottom'});
     }
 
     ngOnInit() {
