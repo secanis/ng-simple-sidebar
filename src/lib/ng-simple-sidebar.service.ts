@@ -28,7 +28,7 @@ export class SimpleSidebarService {
      *
      * @param item
      */
-    public addItem(item: SimpleSidebarItem): void {
+    public addItem(item: any): void {
         this.simpleSidebarItems.push(new SimpleSidebarItem(
             item.name,
             item.route,

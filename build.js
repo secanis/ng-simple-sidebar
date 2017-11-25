@@ -153,6 +153,7 @@ function _relativeCopy(fileGlob, from, to) {
                 let data = fs.readFileSync(origin, 'utf-8');
                 // Remove unwanted stuff from package.json for npm package
                 if (file === 'package.json') {
+                    data = JSON.parse(data);
                     delete data.devDependencies;
                     delete data.scripts;
                     data = JSON.stringify(data, null, 2);
