@@ -18,11 +18,16 @@ export class SimpleSidebarSettings {
      * Set a custom icon as close icon (optional)
      */
     closeIcon: string;
+    /**
+     * Decide if the icons should be docked (optional)
+     */
+    docked: boolean;
 
-    constructor(state: boolean, title: string, close: boolean, closeIcon: string) {
+    constructor(state: boolean, title: string, close: boolean, closeIcon: string, docked: boolean) {
         this.state = state || false;
         this.title = title || '';
         this.close = close || true;
-        this.closeIcon = closeIcon || null;
+        this.closeIcon = closeIcon || '';
+        this.docked = docked || false;
     }
 }

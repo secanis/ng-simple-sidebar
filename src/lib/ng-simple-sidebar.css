@@ -1,4 +1,5 @@
 .ass-menu-button {
+    position: fixed;
     margin-top: 10px;
     margin-left: 30px;
     width: 30px;
@@ -19,6 +20,12 @@
     color: #000;
 }
 
+.ass-aside-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
 .ass-aside-menu-title {
     text-transform: uppercase;
 }
@@ -31,6 +38,39 @@
     height: 40px;
     border-bottom: 1px solid #bbb;
     line-height: 40px;
+}
+
+.ass-aside-dock {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 0px;
+    top: 0px;
+    height: calc(100vh - 30px);
+    padding: 15px;
+    padding-left: 20px;
+    background-color: #eee;
+    color: #000;
+}
+
+.ass-aside-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.ass-aside-container-end {
+    justify-content: flex-end;
+}
+
+.ass-aside-dock .ass-aside-menu-item {
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.ass-aside-dock-expand-icon {
+    cursor: pointer;
 }
 
 .ass-aside-menu-item:first-of-type {
