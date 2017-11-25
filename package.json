@@ -1,6 +1,6 @@
 {
   "name": "ng-simple-sidebar",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple angular component to generate a sidebar with a hamburger menu.",
   "main": "bundles/ng-simple-sidebar.umd.js",
   "module": "index.js",
