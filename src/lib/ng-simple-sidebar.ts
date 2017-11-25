@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { SimpleSidebarService } from './simple-sidebar.service';
-import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
+import { Component } from '@angular/core';
+import { SimpleSidebarService } from './ng-simple-sidebar.service';
+import { SimpleSidebarItem } from './models/ng-simple-sidebar-item.model';
 
 @Component({
     selector: 'simple-sidebar',
@@ -54,7 +54,7 @@ import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
                     (click)="closeSidebar()"></div>
         </div>
     `,
-    styles: [require('./simple-sidebar.css').toString()]
+    styleUrls: ['./ng-simple-sidebar.css']
 })
 /**
  * Simple Sidebar component with the template

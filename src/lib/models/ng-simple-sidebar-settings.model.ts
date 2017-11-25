@@ -27,7 +27,7 @@ export class SimpleSidebarSettings {
         this.state = state || false;
         this.title = title || '';
         this.close = close || true;
-        this.closeIcon = closeIcon || null;
+        this.closeIcon = closeIcon || '';
         this.docked = docked || false;
     }
 }

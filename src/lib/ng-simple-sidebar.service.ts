@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { SimpleSidebarSettings } from './models/simple-sidebar-settings.model';
-import { SimpleSidebarItem } from './models/simple-sidebar-item.model';
+import { SimpleSidebarSettings } from './models/ng-simple-sidebar-settings.model';
+import { SimpleSidebarItem } from './models/ng-simple-sidebar-item.model';
 
 /**
  * Sidebar service: it returns configured settings and the actual state of the sidebar
@@ -12,14 +11,14 @@ export class SimpleSidebarService {
     private simpleSidebarSettings: SimpleSidebarSettings;
     private simpleSidebarItems: Array<SimpleSidebarItem> = [];
 
-    constructor(private router: Router) { }
+    constructor( ) { }
 
     /**
      * Set your custom settings for the sidebar
      *
      * @param settingsObj
      */
-    public setSettings(settingsObj): void {
+    public setSettings(settingsObj: any): void {
         this.simpleSidebarSettings = new SimpleSidebarSettings(settingsObj.state, settingsObj.title,
             settingsObj.close, settingsObj.closeItem, settingsObj.docked);
     }
@@ -29,7 +28,7 @@ export class SimpleSidebarService {
      *
      * @param item
      */
-    public addItem(item): void {
+    public addItem(item: SimpleSidebarItem): void {
         this.simpleSidebarItems.push(new SimpleSidebarItem(
             item.name,
             item.route,
