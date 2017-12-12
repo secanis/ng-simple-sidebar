@@ -45,8 +45,8 @@ return Promise.resolve()
     // Bundle lib.
     .then(() => {
         // Base configuration.
-        const es5Entry = path.join(es5OutputFolder, `${libName}.js`);
-        const es2015Entry = path.join(es2015OutputFolder, `${libName}.js`);
+        const es5Entry = path.join(es5OutputFolder, `index.js`);
+        const es2015Entry = path.join(es2015OutputFolder, `index.js`);
         const rollupBaseConfig = {
             name: camelCase(libName),
             sourcemap: true,

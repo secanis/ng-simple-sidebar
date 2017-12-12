@@ -1,7 +1,7 @@
 /**
  * Defines the simple sidebar settings.
  */
-export class SimpleSidebarSettings {
+export class SidebarSettings {
     /**
      * Describes the current state of the sidebar, as an effect for the css events (true or false)
      */

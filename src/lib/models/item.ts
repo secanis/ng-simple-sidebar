@@ -1,8 +1,8 @@
 /**
  * Definition of a simple sidebar item.
  */
-export class SimpleSidebarItem {
-    /**
+export class SidebarItem {
+        /**
      * item name
      */
     name: string;

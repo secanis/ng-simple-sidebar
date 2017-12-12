@@ -26,18 +26,18 @@ and then from your angular `AppModule`:
 	import { SimpleSidebar, SimpleSidebarService } from 'ng-simple-sidebar';
 	
 	@NgModule({
-	  declarations: [
-	    AppComponent
-	  ],
-	  imports: [
-	    SimpleSidebar,
-	    BrowserModule,
-	
-	    // Specify your library as an import
-	    LibraryModule
-	  ],
-	  providers: [SimpleSidebarService],
-	  bootstrap: [AppComponent]
+		declarations: [
+			AppComponent
+		],
+		imports: [
+			SimpleSidebar,
+			BrowserModule,
+		
+			// Specify your library as an import
+			LibraryModule
+		],
+		providers: [SimpleSidebarService],
+		bootstrap: [AppComponent]
 	})
 	export class AppModule { }
 
@@ -75,8 +75,8 @@ To lint all `*.ts` files:
 
 To build the demo application incl. the lib:
 
-	npm run build-demo  // to build it
-	npm run demo		// to start it
+	npm run demo			// to start the demo
+	npm run build-demo		// to build the demo
 	
 
 ## License and Thanks

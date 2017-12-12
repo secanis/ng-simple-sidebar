@@ -1,29 +1,20 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { routing } from './app.routing';
+
 import { AppComponent } from './app.component';
+import { SimpleSidebarModule } from '../../../dist';
 
-// Import libraries
-import { SimpleSidebarComponent } from '../../lib/ng-simple-sidebar';
-import { SimpleSidebarService } from '../../lib/ng-simple-sidebar.service';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        routing
-    ],
-    declarations: [
-        AppComponent,
-        SimpleSidebarComponent
-    ],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [
-        SimpleSidebarService
-    ]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    SimpleSidebarModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-
-export class AppModule {
-    constructor() {}
-}
+export class AppModule { }

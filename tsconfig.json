@@ -1,36 +1,43 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
+    "baseUrl": "",
     "stripInternal": true,
-    "experimentalDecorators": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "module": "es2015",
     "moduleResolution": "node",
+    "target": "ES5",
+    "module": "es2015",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
     "paths": {
-      "@angular/core": [
-        "node_modules/@angular/core"
+      "@angular/*": [
+        "node_modules/@angular/*"
       ],
       "rxjs/*": [
         "node_modules/rxjs/*"
       ]
-    },
-    "rootDir": ".",
-    "outDir": "dist",
-    "sourceMap": true,
-    "inlineSources": true,
-    "target": "es5",
-    "skipLibCheck": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ]
+    }
+  },
+  "outDir": "dist",
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "skipLibCheck": true,
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
   },
   "files": [
     "index.ts"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true
+    "strictMetadataEmit": true,
+    "annotationsAs": "decorators",
+    "preserveWhitespaces": false
   }
 }

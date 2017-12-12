@@ -1,28 +1,18 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleSidebarComponent } from './ng-simple-sidebar';
-import { SimpleSidebarService } from './ng-simple-sidebar.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarService } from './service/sidebar.service';
 
-export * from './ng-simple-sidebar';
-export * from './ng-simple-sidebar.service';
+export * from './service/sidebar.service';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-        SimpleSidebarComponent,
-    ],
-    exports: [
-        SimpleSidebarComponent
-    ]
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    SidebarComponent
+  ],
+  declarations: [SidebarComponent],
+  providers: [SidebarService]
 })
-
-export class SimpleSidebar {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SimpleSidebar,
-            providers: [SimpleSidebarService]
-        };
-    }
-}
+export class SimpleSidebarModule { }

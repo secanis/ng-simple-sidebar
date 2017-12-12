@@ -2,6 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/lib-es2015/",
+        "declaration": true,
         "target": "es2015",
         "rootDir": "./",
         "baseUrl": "",
@@ -17,6 +18,7 @@
         "skipTemplateCodegen": true,
         "flatModuleOutFile": "angular-async-local-storage.js",
         "flatModuleId": "angular-async-local-storage",
-        "genDir": "../../out-tsc/lib-gen-dir/"
+        "genDir": "../../out-tsc/lib-gen-dir/",
+        "annotationsAs": "decorators"
     }
 }

@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { SimpleSidebarSettings } from './models/ng-simple-sidebar-settings.model';
-import { SimpleSidebarItem } from './models/ng-simple-sidebar-item.model';
+import { SidebarSettings } from '../models/settings';
+import { SidebarItem } from '../models/item';
 
-/**
- * Sidebar service: it returns configured settings and the actual state of the sidebar
- */
 @Injectable()
-export class SimpleSidebarService {
-    private simpleSidebarSettings: SimpleSidebarSettings;
-    private simpleSidebarItems: Array<SimpleSidebarItem> = [];
-
-    constructor( ) { }
+export class SidebarService {
+    private sidebarSettings: SidebarSettings;
+    private sidebarItems: Array<SidebarItem> = [];
 
     /**
      * Set your custom settings for the sidebar
@@ -19,7 +14,7 @@ export class SimpleSidebarService {
      * @param settingsObj
      */
     public setSettings(settingsObj: any): void {
-        this.simpleSidebarSettings = new SimpleSidebarSettings(settingsObj.state, settingsObj.title,
+        this.sidebarSettings = new SidebarSettings(settingsObj.state, settingsObj.title,
             settingsObj.close, settingsObj.closeItem, settingsObj.docked);
     }
 
@@ -29,7 +24,7 @@ export class SimpleSidebarService {
      * @param item
      */
     public addItem(item: any): void {
-        this.simpleSidebarItems.push(new SimpleSidebarItem(
+        this.sidebarItems.push(new SidebarItem(
             item.name,
             item.route,
             item.icon,
@@ -41,8 +36,8 @@ export class SimpleSidebarService {
     /**
      * Returns all items to create the sidebar list
      */
-    public getItems(): Array<SimpleSidebarItem> {
-        return this.simpleSidebarItems;
+    public getItems(): Array<SidebarItem> {
+        return this.sidebarItems;
     }
 
     /**
@@ -51,13 +46,13 @@ export class SimpleSidebarService {
      * @param val
      */
     public sidebarState(val: boolean): void {
-        this.simpleSidebarSettings.state = val;
+        this.sidebarSettings.state = val;
     }
 
     /**
      * Returns the configured settings object
      */
-    public getSettings(): SimpleSidebarSettings {
-        return this.simpleSidebarSettings;
+    public getSettings(): SidebarSettings {
+        return this.sidebarSettings;
     }
 }
