@@ -7,27 +7,17 @@ export class SidebarSettings {
      */
     state: boolean;
     /**
-     * Set a custom title to the top of the sidebar (optional)
+     * Deactivate the open/close button, default: true (optional)
      */
-    title: string;
+    openCloseButton: boolean;
     /**
-     * Describes the current close-state of the sidebar (true or false)
+     * Set an own icon (like font-awesome), default: fa fa-bars fa-2x (optional)
      */
-    close: boolean;
-    /**
-     * Set a custom icon as close icon (optional)
-     */
-    closeIcon: string;
-    /**
-     * Decide if the icons should be docked (optional)
-     */
-    docked: boolean;
+    openCloseButtonIcon: string;
 
-    constructor(state: boolean, title: string, close: boolean, closeIcon: string, docked: boolean) {
+    constructor(state: boolean, openCloseButton: boolean, openCloseButtonIcon: string) {
         this.state = state || false;
-        this.title = title || '';
-        this.close = close || true;
-        this.closeIcon = closeIcon || '';
-        this.docked = docked || false;
+        this.openCloseButton = openCloseButton || true;
+        this.openCloseButtonIcon = openCloseButtonIcon || 'fa fa-bars fa-2x';
     }
 }

@@ -1,5 +1,7 @@
 # ng-simple-sidebar
 
+> From version 2.x.x to 3.0.0 we removed the old menu and support now just the dock menu, which you can expand.
+
 ## Demo
 
 To start the demo application:
@@ -44,9 +46,17 @@ and then from your angular `AppModule`:
 Once your library is imported, you can use it in your angular application:
 
 	<!-- You can now use your library component in app.component.html -->
-	<div class="navbar">
-	    <simple-sidebar></simple-sidebar>
+	<div class="content-wrapper">
+		<simple-sidebar></simple-sidebar>
+		<div class="content"></div>
 	</div>
+
+	/** CSS for that construct **/
+	.content-wrapper {
+		display: flex;
+		flex-wrap: nowrap;
+	}
+	
 
 And you can set the options from your application:
 
@@ -54,8 +64,8 @@ And you can set the options from your application:
 	
 	export class AppComponent {
 	    constructor(private simpleSidebarService: SimpleSidebarService) {
-	        // for the icons you Font-Awesome is recommended
-	        this.simpleSidebarService.setSettings({close: true, closeItem: 'fa fa-close fa-2x'});
+	        // for the icons Font-Awesome is recommended
+	        this.simpleSidebarService.setSettings({openCloseButton: true, openCloseButtonIcon: 'fa fa-close fa-2x'});
 	        this.simpleSidebarService.addItem({name: 'link one', icon: 'fa fa-home', route: '/foo', target: ''});
 	        this.simpleSidebarService.addItem({name: 'link two', icon: 'fa fa-gavel', route: '/bar', target: ''});
 	    }

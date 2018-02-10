@@ -2,9 +2,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.content-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 .content {
-    position: relative;
-    margin-left: 80px;
-    width: auto;
     padding: 20px;
 }

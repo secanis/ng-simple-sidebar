@@ -14,8 +14,7 @@ export class SidebarService {
      * @param settingsObj
      */
     public setSettings(settingsObj: any): void {
-        this.sidebarSettings = new SidebarSettings(settingsObj.state, settingsObj.title,
-            settingsObj.close, settingsObj.closeItem, settingsObj.docked);
+        this.sidebarSettings = new SidebarSettings(settingsObj.state, settingsObj.openCloseButton, settingsObj.openCloseButtonIcon);
     }
 
     /**
