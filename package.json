@@ -1,6 +1,6 @@
 {
     "name": "ng-simple-sidebar",
-    "version": "4.0.0",
+    "version": "0.0.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -15,7 +15,15 @@
         "type": "git",
         "url": "https://github.com/secanis/ng-simple-sidebar.git"
     },
-    "keywords": ["angular", "sidebar", "simple sidebar", "ng", "library"],
+    "keywords": [
+        "angular",
+        "angular 9",
+        "sidebar",
+        "simple sidebar",
+        "ng",
+        "library",
+        "ivy"
+    ],
     "author": "support@secanis.ch",
     "license": "MIT",
     "bugs": {
