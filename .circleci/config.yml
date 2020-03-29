@@ -40,7 +40,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
-          command: cd dist/ng-simple-sidebar; npm publish
+          command: cd dist/ng-simple-sidebar; npm publish --userconfig ../../.npmrc
       # deployment docs
       - run:
           name: Install and configure dependencies
