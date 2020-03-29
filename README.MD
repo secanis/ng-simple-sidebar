@@ -1,15 +1,8 @@
 # ng-simple-sidebar
 
-> From version 2.x.x to 3.0.0 we removed the old menu and support now just the dock menu, which you can expand.
-
 ## Demo
 
-To start the demo application:
 
-	npm install
-	npm run demo
-
-After that, you can visit the demo application under `http://localhost:8080`.
 
 ## Installation
 
@@ -78,19 +71,14 @@ To generate the lib files:
 
 	npm run build
 
-
-To lint all `*.ts` files:
-
-	npm run lint
-
 To build the demo application incl. the lib:
 
 	npm run demo			// to start the demo
-	npm run build-demo		// to build the demo
+	npm run start   		// to build the demo
+
+After that, you can visit the demo application under `http://localhost:4200`.
 	
 
-## License and Thanks
+## License
 
-MIT © [Matthias Baldi](mailto:matthias.baldi@secanis.ch)
-
-ng-simple-sidebar build process is based on: [https://github.com/cyrilletuzi/angular-async-local-storage](https://github.com/cyrilletuzi/angular-async-local-storage) and the blog entry [https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464](https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464)
+MIT © [secanis.ch](mailto:support@secanis.ch)

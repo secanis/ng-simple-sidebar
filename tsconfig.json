@@ -1,43 +1,27 @@
 {
-  "compilerOptions": {
-    "baseUrl": "",
-    "stripInternal": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "target": "ES5",
-    "module": "es2015",
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "noEmitHelpers": true,
-    "paths": {
-      "@angular/*": [
-        "node_modules/@angular/*"
-      ],
-      "rxjs/*": [
-        "node_modules/rxjs/*"
-      ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "ng-simple-sidebar": [
+                "dist/ng-simple-sidebar/ng-simple-sidebar",
+                "dist/ng-simple-sidebar"
+            ]
+        }
+    },
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     }
-  },
-  "outDir": "dist",
-  "compileOnSave": false,
-  "buildOnSave": false,
-  "skipLibCheck": true,
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
-  "files": [
-    "index.ts"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "annotationsAs": "decorators",
-    "preserveWhitespaces": false
-  }
 }
