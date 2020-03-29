@@ -49,12 +49,15 @@ jobs:
             git config user.email "$GIT_EMAIL"
             git config user.name "ci-build"
       - run:
+          name: Build Showcase Application
+          command: npm run build:showcase
+      - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist dist/ng-simple-sidebar
+          command: gh-pages --dist dist/ng-simple-sidebar-showcase
 
 workflows:
   version: 2
-  test-deploy:
+  lib-build:
     jobs:
       - test:
           filters:
