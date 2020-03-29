@@ -15,7 +15,8 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
 
-      - run: npm install
+      - run: npm ci
+      - run: npm run build:lib
       # - run:
       #       name: Run tests
       #       command: npm test
@@ -33,12 +34,23 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
+      # devployment lib
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
           command: npm publish
+      # deployment docs
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "$GIT_EMAIL"
+            git config user.name "ci-build"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist dist/ng-simple-sidebar
 
 workflows:
   version: 2
