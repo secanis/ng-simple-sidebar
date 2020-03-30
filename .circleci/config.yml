@@ -45,7 +45,6 @@ jobs:
       - run:
           name: Install and configure dependencies
           command: |
-            npm install -g --silent gh-pages
             git config user.email "$GIT_EMAIL"
             git config user.name "ci-build"
       - run:
@@ -53,7 +52,7 @@ jobs:
           command: npm run build:showcase
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist dist/ng-simple-sidebar-showcase
+          command: npm run gh-pages
 
 workflows:
   version: 2
