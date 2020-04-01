@@ -41,10 +41,16 @@ jobs:
       - run:
           name: Publish package
           command: cd dist/ng-simple-sidebar; npm publish --userconfig ../../.npmrc
+  docs:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       # deployment docs
       - run:
-          name: Install and configure dependencies
+          name: Configure dependencies
           command: |
+            ssh git@github.com -oStrictHostKeyChecking=no
             git config user.email "$GIT_EMAIL"
             git config user.name "ci-build"
       - run:
@@ -63,6 +69,14 @@ workflows:
             tags:
               only: /^v.*/
       - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - docs:
           requires:
             - build
           filters:
