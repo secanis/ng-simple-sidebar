@@ -2,7 +2,7 @@
 
 ## Demo
 
-
+[https://secanis.github.io/ng-simple-sidebar/](https://secanis.github.io/ng-simple-sidebar/)
 
 ## Installation
 
