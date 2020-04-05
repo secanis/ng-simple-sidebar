@@ -69,7 +69,11 @@ export class NgSimpleSidebarService {
             ),
             closeAfterClick: configuration.hasOwnProperty('closeAfterClick')
                 ? configuration.closeAfterClick
-                : true
+                : true,
+            mobile: configuration.hasOwnProperty('mobile')
+                ? configuration.mobile
+                : false,
+            position: configuration.position || 'sticky'
         };
     }
 

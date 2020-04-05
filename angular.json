@@ -104,7 +104,8 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ng-simple-sidebar-showcase:build:production"
+                            "browserTarget": "ng-simple-sidebar-showcase:build:production",
+                            "baseHref": "/ng-simple-sidebar/"
                         }
                     }
                 },

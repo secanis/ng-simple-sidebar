@@ -6,6 +6,23 @@ html, body {
     padding: 0;
 }
 
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.content footer {
+    align-self: flex-end;
+}
+
 .docs-methods {
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +30,18 @@ html, body {
 }
 
 .docs-methods article {
-    padding: 10px;
-    min-width: 350px;
+    padding: 20px;
+    min-width: 250px;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+/* mobile stuff */
+.m-content-wrapper {
+    flex-direction: column;
+}
+
+.m-content-wrapper .content {
+    padding-top: 80px;
+    flex: 0 0 100%;
 }

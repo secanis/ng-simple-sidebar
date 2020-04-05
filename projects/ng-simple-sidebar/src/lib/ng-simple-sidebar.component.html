@@ -1,74 +1,31 @@
-<aside
+<div
     *ngIf="configuration$ | async as conf"
     class="dock"
-    [ngClass]="{ 'dock-open': isOpen$ | async }"
-    [ngStyle]="{
-        'background-color': getColors().bColor,
-        color: getColors().fColor
-    }"
+    [ngClass]="{ 'dock-open': isOpen$ | async, 'dock-mobile': conf.mobile }"
+    [ngStyle]="dockStyle$ | async"
 >
-    <div class="sidebar-container">
-        <!-- default items, like open/bottom buttons -->
+    <!-- default items, like open/bottom buttons -->
+    <div class="sidebar-header">
         <i
             *ngIf="(isOpen$ | async) && conf.closeIcon"
-            class="menu-icon-close pointer"
+            class="menu-opener pointer"
             [class]="conf.closeIcon"
             (click)="closeSidebar()"
         ></i>
         <i
             *ngIf="!(isOpen$ | async) && conf.openIcon"
-            class="menu-icon-open pointer"
+            class="menu-opener pointer"
             [class]="conf.openIcon"
             (click)="openSidebar()"
         ></i>
-
-        <!-- top side menu entries -->
-        <ng-container
-            *ngTemplateOutlet="menuItem; context: { items: itemsTop$ | async }"
-        ></ng-container>
     </div>
-    <div class="sidebar-container sidebar-container-end">
-        <!-- bottom side menu entries -->
-        <ng-container
-            *ngTemplateOutlet="
-                menuItem;
-                context: { items: itemsBottom$ | async }
-            "
-        ></ng-container>
-    </div>
-</aside>
-
-<ng-template #menuItem let-itemList="items">
-    <ng-container *ngFor="let item of itemList">
-        <a
-            *ngIf="item.routerLink"
-            (click)="linkClickAction()"
-            [ngStyle]="{ color: getColors().fColor }"
-            [routerLink]="item.routerLink"
-            [title]="item.name"
-            class="menu-item pointer"
-        >
-            <ng-container
-                *ngTemplateOutlet="menuIconText; context: { item: item }"
-            ></ng-container>
-        </a>
-        <a
-            *ngIf="item.url"
-            (click)="linkClickAction()"
-            [ngStyle]="{ color: getColors().fColor }"
-            [target]="item.target"
-            [href]="item.url"
-            [title]="item.name"
-            class="menu-item pointer"
-        >
-            <ng-container
-                *ngTemplateOutlet="menuIconText; context: { item: item }"
-            ></ng-container>
-        </a>
-    </ng-container>
-</ng-template>
-
-<ng-template #menuIconText let-item="item">
-    <i *ngIf="item.icon" class="menu-icon-item" [class]="item.icon"></i>
-    <span *ngIf="isOpen$ | async" class="menu-item-label">{{ item.name }}</span>
-</ng-template>
+    <lib-sidebar-container
+        [configuration]="configuration$ | async"
+        [itemsBottom]="itemsBottom$ | async"
+        [itemsTop]="itemsTop$ | async"
+        [isOpen]="isOpen$ | async"
+        [colors]="colors$ | async"
+        [ngStyle]="sidedbarStyle$ | async"
+        (closeDock)="closeSidebar()"
+    ></lib-sidebar-container>
+</div>

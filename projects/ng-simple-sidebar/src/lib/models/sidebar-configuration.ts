@@ -23,6 +23,16 @@ export class SimpleSidebarConfiguration {
      * In default mode the sidebar minimize after click on a link (optional)
      */
     closeAfterClick?: boolean;
+
+    /**
+     * Set mode for desktop or mobile page (optional)
+     */
+    mobile?: boolean;
+
+    /**
+     * CSS positioning mode for the dock (optional)
+     */
+    position?: 'sticky' | 'fixed';
 }
 
 export interface SimpleSidebarColors {
@@ -31,4 +41,10 @@ export interface SimpleSidebarColors {
     font?: string;
     darkModeBackground?: string;
     darkModeFont?: string;
+}
+
+export interface SimpleSidebarAbstractColors {
+    darkMode?: boolean;
+    fColor: string;
+    bColor: string;
 }

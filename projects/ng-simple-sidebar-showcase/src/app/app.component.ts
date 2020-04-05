@@ -11,18 +11,20 @@ import {
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    sidebarItems: SimpleSidebarItem[];
-    sidebarConfig: SimpleSidebarConfiguration = {
+    private defaultSidebarItems: SimpleSidebarItem[];
+    private defaultSidebarConfig: SimpleSidebarConfiguration = {
         openIcon: 'las la-bars',
         closeIcon: 'las la-times',
         colors: {
             darkMode: false
         }
     };
+
     isOpen = false;
+    configState$ = this.ngSimpleSidebarService.getConfiguration();
 
     constructor(private ngSimpleSidebarService: NgSimpleSidebarService) {
-        this.sidebarItems = [
+        this.defaultSidebarItems = [
             {
                 name: 'Welcome',
                 icon: 'las la-home',
@@ -43,7 +45,7 @@ export class AppComponent {
                 position: 'bottom'
             }
         ];
-        this.ngSimpleSidebarService.addItems(this.sidebarItems);
-        this.ngSimpleSidebarService.configure(this.sidebarConfig);
+        this.ngSimpleSidebarService.addItems(this.defaultSidebarItems);
+        this.ngSimpleSidebarService.configure(this.defaultSidebarConfig);
     }
 }

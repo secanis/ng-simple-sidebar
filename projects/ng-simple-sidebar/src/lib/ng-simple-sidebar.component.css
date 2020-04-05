@@ -1,40 +1,31 @@
-.menu-title {
-    text-transform: uppercase;
-}
-
 .dock {
-    width: 30px;
     display: flex;
     flex-direction: column;
     left: 0px;
     top: 0px;
-    height: calc(100vh - 30px);
     padding: 15px;
     transition: width 0.2s;
     box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-
-.dock .menu-item {
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
-
-.dock .menu-item span {
-    vertical-align: super;
 }
 
 .dock-open {
     width: 250px;
 }
 
-.dock-open .menu-item {
-    min-width: 200px;
+lib-sidebar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sidebar-container,
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-container {
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
 }
 
@@ -42,39 +33,34 @@
     justify-content: flex-end;
 }
 
-.menu-item {
-    display: block;
-    text-decoration: none;
-    font-weight: lighter;
-    height: 40px;
-}
-
-.menu-item:first-of-type {
-    margin-top: 20px;
-}
-
-.menu-item:active,
-.menu-item:visited,
-.menu-item:link {
-    text-decoration: none;
-}
-
-.menu-item:hover {
-    font-weight: normal;
-    text-decoration: none;
-}
-
-.menu-icon-open,
-.menu-icon-close,
-.menu-icon-item {
+.menu-opener {
     font-size: 30px;
-}
-
-.menu-icon-item {
-    display: inline-block;
-    margin-right: 15px;
 }
 
 .pointer {
     cursor: pointer;
+}
+
+/* mobile mode */
+.dock-mobile {
+    position: fixed;
+    flex: 0 0 100%;
+}
+
+.dock-mobile .sidebar-header,
+.dock-mobile .sidebar-container {
+    flex-direction: row-reverse;
+}
+
+.dock-mobile lib-sidebar-container {
+    position: fixed;
+    display: none;
+}
+
+.dock-open.dock-mobile lib-sidebar-container {
+    display: flex;
+    padding: 50px;
+    top: 60px;
+    left: 0;
+    opacity: 0.9;
 }

@@ -1,0 +1,132 @@
+<h1>Demo ng-simple-sidebar</h1>
+<div class="button-grp">
+    <button class="btn btn-primary" (click)="toggleDarkMode()">
+        Toggle DarkMode
+    </button>
+    <button class="btn btn-primary" (click)="toggleCloseAfterClick()">
+        Toggle CloseAfterClick
+    </button>
+    <button class="btn btn-primary" (click)="toggleSidebarState()">
+        Toggle State
+    </button>
+</div>
+<div class="button-grp">
+    <button class="btn btn-primary" (click)="toggleMenuButtons()">
+        Usage without Menu Button
+    </button>
+    <button class="btn btn-primary" (click)="toggleMobileView()">
+        Toggle Mobile
+    </button>
+</div>
+<hr />
+<section class="docs-methods">
+    <article>
+        <p>
+            <b>SimpleSidebarConfiguration:</b> The most of these properties are used for both mobile and desktop
+            mode.<br />Except the position property, this one can be only
+            configured during the desktop mode.
+        </p>
+        <pre>{{ sidebarConfig$ | async | json }}</pre>
+    </article>
+    <article>
+        <p>
+            <b>SimpleSidebarItem:</b> Example items array to configure the sidebar.<br />
+            You can configure each of the items as bottom or top item and they
+            can take a normal href configuration or Angular routerLink. Do not
+            configure both at the same time!
+        </p>
+        <pre>{{ sidebarItems | json }}</pre>
+    </article>
+</section>
+<h2>Usage</h2>
+<h3>Library</h3>
+<section class="docs-methods">
+    <article>
+        <b>Include Lib in Module</b>
+        <pre>
+...
+import &#x7B; NgSimpleSidebarModule &#x7D; from &#x26;#x27;ng-simple-sidebar&#x26;#x27;;
+
+@NgModule(&#x7B;
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, NgSimpleSidebarModule],
+    providers: [],
+    bootstrap: [AppComponent]
+&#x7D;)
+export class AppModule &#x7B;&#x7D;
+</pre
+        >
+    </article>
+    <article>
+        <b>Include Lib in Component</b>
+        <pre>
+...
+constructor(private ngSimpleSidebarService: NgSimpleSidebarService) &#x7B;
+    this.ngSimpleSidebarService.addItems(this.sidebarItems);
+    this.ngSimpleSidebarService.configure(this.sidebarConfig);
+&#x7D;
+...
+</pre
+        >
+    </article>
+</section>
+<section class="docs-methods">
+    <article>
+        <b>Setter: Methods to set States</b>
+        <pre>
+open()
+close()
+configure(configuration: SimpleSidebarConfiguration)
+addItems(items: SimpleSidebarItem[])
+                </pre
+        >
+    </article>
+    <article>
+        <b>Getter: All Methods are returning a BehaviorSubject</b>
+        <pre>
+isOpen(): BehaviorSubject&#x3C;boolean&#x3E;
+getConfiguration(): BehaviorSubject&#x3C;SimpleSidebarConfiguration&#x3E;
+getTopsideItems(): BehaviorSubject&#x3C;SimpleSidebarItem[]&#x3E;
+getBotsideItems(): BehaviorSubject&#x3C;SimpleSidebarItem[]&#x3E;
+                </pre
+        >
+    </article>
+</section>
+<h3>App Setup</h3>
+<section class="docs-methods">
+    <article>
+        <b>
+            HTML
+        </b>
+        <pre>
+&lt;div class=&quot;content-wrapper&quot;&gt;
+    &lt;lib-ng-simple-sidebar&gt;&lt;/lib-ng-simple-sidebar&gt;
+    &lt;div class=&quot;content&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+    </article>
+    <article>
+        <b>
+            CSS
+        </b>
+        <pre>
+html, body &#x7B;
+    margin: 0;
+    padding: 0;
+&#x7D;
+
+.content-wrapper &#x7B;
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+&#x7D;
+
+.content &#x7B;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+&#x7D;
+        </pre>
+    </article>
+</section>
