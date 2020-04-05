@@ -1,5 +1,9 @@
 # ng-simple-sidebar
 
+[![CircleCI](https://circleci.com/gh/secanis/ng-simple-sidebar.svg?style=svg)](https://circleci.com/gh/secanis/ng-simple-sidebar)[![npm version](https://badge.fury.io/js/ng-simple-sidebar.svg)](https://badge.fury.io/js/ng-simple-sidebar)
+
+[![NPM](https://nodei.co/npm/ng-simple-sidebar.png?compact=true)](https://nodei.co/npm/ng-simple-sidebar/)
+
 ## Demo
 
 A demo showcase app is available under the following url to click around an test the library.
