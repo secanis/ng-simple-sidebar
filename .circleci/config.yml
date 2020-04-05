@@ -50,9 +50,9 @@ jobs:
       - run:
           name: Configure dependencies
           command: |
-          git config user.email "$GIT_EMAIL"
-          git config user.name "ci-build"
-          ssh git@github.com -oStrictHostKeyChecking=no || true
+            git config user.email "$GIT_EMAIL"
+            git config user.name "ci-build"
+            ssh git@github.com -oStrictHostKeyChecking=no || true
       - run:
           name: Build Showcase Application
           command: npm run build:showcase
