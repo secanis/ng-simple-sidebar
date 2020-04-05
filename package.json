@@ -7,7 +7,7 @@
         "build:watch": "ng build --watch",
         "build:showcase": "ng build --prod --project ng-simple-sidebar-showcase",
         "build:lib": "ng build --prod --project ng-simple-sidebar",
-        "postbuild:lib": "copyfiles *.md *.MD ./dist/ng-simple-sidebar",
+        "postbuild:lib": "copyfiles *.md *.MD LICENSE ./dist/ng-simple-sidebar",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",

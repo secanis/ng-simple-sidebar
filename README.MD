@@ -2,9 +2,11 @@
 
 ## Demo
 
+A demo showcase app is available under the following url to click around an test the library.
+
 [https://secanis.github.io/ng-simple-sidebar/](https://secanis.github.io/ng-simple-sidebar/)
 
-## Installation
+## Installation and Setup
 
 To install this library, run ([package on npmjs.com](https://www.npmjs.com/package/ng-simple-sidebar)):
 
@@ -12,69 +14,134 @@ To install this library, run ([package on npmjs.com](https://www.npmjs.com/packa
 
 and then from your angular `AppModule`:
 
-	import { BrowserModule } from '@angular/platform-browser';
-	import { NgModule } from '@angular/core';
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+// Import your library
+import { SimpleSidebar } from 'ng-simple-sidebar';
+
+@NgModule({
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		SimpleSidebar,
+		BrowserModule,
 	
-	import { AppComponent } from './app.component';
-	
-	// Import your library
-	import { SimpleSidebar, SimpleSidebarService } from 'ng-simple-sidebar';
-	
-	@NgModule({
-		declarations: [
-			AppComponent
-		],
-		imports: [
-			SimpleSidebar,
-			BrowserModule,
-		
-			// Specify your library as an import
-			LibraryModule
-		],
-		providers: [SimpleSidebarService],
-		bootstrap: [AppComponent]
-	})
-	export class AppModule { }
+		// Specify your library as an import
+		NgSimpleSidebarModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
 Once your library is imported, you can use it in your angular application:
 
-	<!-- You can now use your library component in app.component.html -->
-	<div class="content-wrapper">
-		<simple-sidebar></simple-sidebar>
-		<div class="content"></div>
-	</div>
+```html
+<!-- You can now use your library component in app.component.html -->
+<div class="content-wrapper">
+	<simple-sidebar></simple-sidebar>
+	<div class="content"></div>
+</div>
+```
 
-	/** CSS for that construct **/
-	.content-wrapper {
-		display: flex;
-		flex-wrap: nowrap;
-	}
-	
+CSS for the basic structure
+
+```css
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+```
+
+
 
 And you can set the options from your application:
 
-	import { SimpleSidebarService } from 'ng-simple-sidebar';
-	
-	export class AppComponent {
-	    constructor(private simpleSidebarService: SimpleSidebarService) {
-	        // for the icons Font-Awesome is recommended
-	        this.simpleSidebarService.setSettings({openCloseButton: true, openCloseButtonIcon: 'fa fa-close fa-2x'});
-	        this.simpleSidebarService.addItem({name: 'link one', icon: 'fa fa-home', route: '/foo', target: ''});
-	        this.simpleSidebarService.addItem({name: 'link two', icon: 'fa fa-gavel', route: '/bar', target: ''});
-	    }
-	}
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { NgSimpleSidebarService } from 'ng-simple-sidebar';
+
+export class AppComponent implements OnInit {
+    constructor(private ngSimpleSidebarService: NgSimpleSidebarService) {}
+    
+    ngOnInit() {
+        this.sidebarItems = [
+            {
+                name: 'Welcome',
+                icon: 'las la-home',
+                routerLink: ['/welcome'],
+                position: 'top'
+            },
+            {
+                name: 'About',
+                icon: 'las la-address-book',
+                routerLink: ['/about'],
+                position: 'top'
+            },
+            {
+                name: 'secanis.ch',
+                icon: 'las la-external-link-alt',
+                url: 'https://secanis.ch',
+                target: '_blank',
+                position: 'bottom'
+            }
+        ];
+        // required, configure items
+        this.ngSimpleSidebarService.addItems(this.sidebarItems);
+        
+        // required, configure icons
+        this.ngSimpleSidebarService.configure(
+            openIcon: 'las la-bars',
+        	closeIcon: 'las la-times',
+		);
+        
+        // optional, configuration and set states
+         this.ngSimpleSidebarService.open();
+         this.ngSimpleSidebarService.close();
+        
+        // optional, access states
+        sidebarConfig$ = this.ngSimpleSidebarService.getConfiguration();
+	    isOpen$ = this.ngSimpleSidebarService.isOpen();
+        getTopsideItems$ = this.ngSimpleSidebarService.getTopsideItems();
+        getBotsideItems$ = this.ngSimpleSidebarService.getBotsideItems();
+    }
+}
+```
 
 
 ## Development
 
-To generate the lib files:
+To generate prod builds:
 
-	npm run build
+```shell
+npm run build:lib
+npm run build:showcase
+```
 
 To build the demo application incl. the lib:
 
-	npm run demo			// to start the demo
-	npm run start   		// to build the demo
+```shell
+npm run build:watch 	// start development server for the library
+npm run start   		// start demo showcase application
+```
 
 After that, you can visit the demo application under `http://localhost:4200`.
 	
