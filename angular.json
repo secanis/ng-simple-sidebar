@@ -74,6 +74,7 @@
                                     "with": "projects/ng-simple-sidebar-showcase/src/environments/environment.prod.ts"
                                 }
                             ],
+                            "baseHref": "/ng-simple-sidebar/",
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -104,8 +105,7 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ng-simple-sidebar-showcase:build:production",
-                            "baseHref": "/ng-simple-sidebar/"
+                            "browserTarget": "ng-simple-sidebar-showcase:build:production"
                         }
                     }
                 },
