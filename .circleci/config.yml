@@ -64,10 +64,7 @@ workflows:
   version: 2
   lib-build:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /^v.*/
+      - build
       - deploy:
           requires:
             - build
@@ -77,8 +74,9 @@ workflows:
             branches:
               ignore: /.*/
       - docs:
+          requires:
+            - build
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only:
+                - master
