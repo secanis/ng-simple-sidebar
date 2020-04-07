@@ -77,8 +77,6 @@ workflows:
             branches:
               ignore: /.*/
       - docs:
-          requires:
-            - build
           filters:
             tags:
               only: /^v.*/

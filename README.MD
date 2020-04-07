@@ -1,6 +1,8 @@
 # ng-simple-sidebar
 
-[![CircleCI](https://circleci.com/gh/secanis/ng-simple-sidebar.svg?style=svg)](https://circleci.com/gh/secanis/ng-simple-sidebar)[![npm version](https://badge.fury.io/js/ng-simple-sidebar.svg)](https://badge.fury.io/js/ng-simple-sidebar)
+An easy library to implement asidebar with a mobile mode to your Angular app.
+
+[![CircleCI](https://circleci.com/gh/secanis/ng-simple-sidebar.svg?style=svg)](https://circleci.com/gh/secanis/ng-simple-sidebar)[![npm version](https://badge.fury.io/js/ng-simple-sidebar.svg)](https://badge.fury.io/js/ng-simple-sidebar)![typescript types](https://badgen.net/npm/types/ng-simple-sidebar)![npm license](https://badgen.net/npm/license/ng-simple-sidebar)
 
 [![NPM](https://nodei.co/npm/ng-simple-sidebar.png?compact=true)](https://nodei.co/npm/ng-simple-sidebar/)
 
@@ -34,7 +36,7 @@ import { SimpleSidebar } from 'ng-simple-sidebar';
 	imports: [
 		SimpleSidebar,
 		BrowserModule,
-	
+
 		// Specify your library as an import
 		NgSimpleSidebarModule
 	],
@@ -85,7 +87,7 @@ import { NgSimpleSidebarService } from 'ng-simple-sidebar';
 
 export class AppComponent implements OnInit {
     constructor(private ngSimpleSidebarService: NgSimpleSidebarService) {}
-    
+
     ngOnInit() {
         this.sidebarItems = [
             {
@@ -110,17 +112,17 @@ export class AppComponent implements OnInit {
         ];
         // required, configure items
         this.ngSimpleSidebarService.addItems(this.sidebarItems);
-        
+
         // required, configure icons
         this.ngSimpleSidebarService.configure(
             openIcon: 'las la-bars',
         	closeIcon: 'las la-times',
 		);
-        
+
         // optional, configuration and set states
          this.ngSimpleSidebarService.open();
          this.ngSimpleSidebarService.close();
-        
+
         // optional, access states
         sidebarConfig$ = this.ngSimpleSidebarService.getConfiguration();
 	    isOpen$ = this.ngSimpleSidebarService.isOpen();
@@ -148,7 +150,7 @@ npm run start   		// start demo showcase application
 ```
 
 After that, you can visit the demo application under `http://localhost:4200`.
-	
+
 
 ## License
 
