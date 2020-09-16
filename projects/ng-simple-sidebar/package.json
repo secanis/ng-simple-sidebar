@@ -1,6 +1,6 @@
 {
     "name": "ng-simple-sidebar",
-    "version": "4.2.0",
+    "version": "4.2.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/secanis/ng-simple-sidebar.git"
@@ -22,10 +22,11 @@
     },
     "homepage": "https://secanis.github.io/ng-simple-sidebar",
     "peerDependencies": {
-        "@angular/common": "^9.0.7",
-        "@angular/core": "^9.0.7"
-},
+        "@angular/common": "^10.1.1",
+        "@angular/core": "^10.1.1"
+}
+,
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.1"
   }
 }
