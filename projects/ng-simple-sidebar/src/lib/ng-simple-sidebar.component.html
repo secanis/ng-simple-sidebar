@@ -4,6 +4,8 @@
     [ngClass]="{ 'dock-open': isOpen$ | async, 'dock-mobile': conf.mobile }"
     [ngStyle]="dockStyle$ | async"
 >
+    <span *ngIf="conf.mobile && conf.mobileTitle">{{ conf.mobileTitle }}</span>
+
     <!-- default items, like open/bottom buttons -->
     <div class="sidebar-header">
         <i

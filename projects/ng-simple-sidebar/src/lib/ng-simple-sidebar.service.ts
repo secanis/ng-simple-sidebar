@@ -2,60 +2,60 @@ import { Injectable } from '@angular/core';
 
 import {
     SimpleSidebarConfiguration,
-    SimpleSidebarColors
+    SimpleSidebarColors,
 } from './models/sidebar-configuration';
 import {
     SimpleSidebarItem,
-    SimpleSidebarPosition
+    SimpleSidebarPosition,
 } from './models/sidebar-item';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgSimpleSidebarService {
-    private _stateChange$ = new BehaviorSubject<boolean>(false);
-    private _configuration$ = new BehaviorSubject<SimpleSidebarConfiguration>(
+    private STATE_CHANGE$ = new BehaviorSubject<boolean>(false);
+    private CONFIGURATION$ = new BehaviorSubject<SimpleSidebarConfiguration>(
         null
     );
-    private _itemsTop$ = new BehaviorSubject<SimpleSidebarItem[]>([]);
-    private _itemsBottom$ = new BehaviorSubject<SimpleSidebarItem[]>([]);
+    private ITEMS_TOP$ = new BehaviorSubject<SimpleSidebarItem[]>([]);
+    private ITEMS_BOTTOM$ = new BehaviorSubject<SimpleSidebarItem[]>([]);
 
     open() {
-        this._stateChange$.next(true);
+        this.STATE_CHANGE$.next(true);
     }
 
     close() {
-        this._stateChange$.next(false);
+        this.STATE_CHANGE$.next(false);
     }
 
     isOpen(): BehaviorSubject<boolean> {
-        return this._stateChange$;
+        return this.STATE_CHANGE$;
     }
 
     configure(configuration: SimpleSidebarConfiguration) {
-        this._configuration$.next(this.setConfigDefaults(configuration));
+        this.CONFIGURATION$.next(this.setConfigDefaults(configuration));
     }
 
     getConfiguration(): BehaviorSubject<SimpleSidebarConfiguration> {
-        return this._configuration$;
+        return this.CONFIGURATION$;
     }
 
     addItems(items: SimpleSidebarItem[]) {
-        this._itemsBottom$.next(
-            items.filter(i => i.position === SimpleSidebarPosition.bottom)
+        this.ITEMS_BOTTOM$.next(
+            items.filter((i) => i.position === SimpleSidebarPosition.bottom)
         );
-        this._itemsTop$.next(
-            items.filter(i => i.position === SimpleSidebarPosition.top)
+        this.ITEMS_TOP$.next(
+            items.filter((i) => i.position === SimpleSidebarPosition.top)
         );
     }
 
     getTopsideItems(): BehaviorSubject<SimpleSidebarItem[]> {
-        return this._itemsTop$;
+        return this.ITEMS_TOP$;
     }
 
     getBotsideItems(): BehaviorSubject<SimpleSidebarItem[]> {
-        return this._itemsBottom$;
+        return this.ITEMS_BOTTOM$;
     }
 
     private setConfigDefaults(
@@ -73,7 +73,8 @@ export class NgSimpleSidebarService {
             mobile: configuration.hasOwnProperty('mobile')
                 ? configuration.mobile
                 : false,
-            position: configuration.position || 'sticky'
+            position: configuration.position || 'sticky',
+            mobileTitle: configuration.mobileTitle || null,
         };
     }
 
@@ -83,7 +84,7 @@ export class NgSimpleSidebarService {
             background: colors.background || '#eee',
             font: colors.font || '#000',
             darkModeBackground: '#333',
-            darkModeFont: '#fff'
+            darkModeFont: '#fff',
         };
     }
 }

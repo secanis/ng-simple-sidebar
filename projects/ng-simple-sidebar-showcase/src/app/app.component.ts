@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import {
     SimpleSidebarItem,
     SimpleSidebarConfiguration,
-    NgSimpleSidebarService
+    NgSimpleSidebarService,
 } from 'projects/ng-simple-sidebar/src/public-api';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
     private defaultSidebarItems: SimpleSidebarItem[];
@@ -16,8 +16,9 @@ export class AppComponent {
         openIcon: 'las la-bars',
         closeIcon: 'las la-times',
         colors: {
-            darkMode: false
-        }
+            darkMode: false,
+        },
+        mobileTitle: 'I am a mobile title',
     };
 
     isOpen = false;
@@ -29,21 +30,21 @@ export class AppComponent {
                 name: 'Welcome',
                 icon: 'las la-home',
                 routerLink: ['/welcome'],
-                position: 'top'
+                position: 'top',
             },
             {
                 name: 'About',
                 icon: 'las la-address-book',
                 routerLink: ['/about'],
-                position: 'top'
+                position: 'top',
             },
             {
                 name: 'secanis.ch',
                 icon: 'las la-external-link-alt',
                 url: 'https://secanis.ch',
                 target: '_blank',
-                position: 'bottom'
-            }
+                position: 'bottom',
+            },
         ];
         this.ngSimpleSidebarService.addItems(this.defaultSidebarItems);
         this.ngSimpleSidebarService.configure(this.defaultSidebarConfig);

@@ -33,6 +33,11 @@ export class SimpleSidebarConfiguration {
      * CSS positioning mode for the dock (optional)
      */
     position?: 'sticky' | 'fixed';
+
+    /**
+     * Title, which got written in mobile mode (optional)
+     */
+    mobileTitle?: string;
 }
 
 export interface SimpleSidebarColors {
