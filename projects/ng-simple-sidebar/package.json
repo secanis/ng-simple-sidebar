@@ -1,6 +1,6 @@
 {
     "name": "ng-simple-sidebar",
-    "version": "4.3.0",
+    "version": "4.3.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/secanis/ng-simple-sidebar.git"
@@ -9,6 +9,7 @@
         "angular",
         "angular 10",
         "angular 11",
+        "angular 12",
         "sidebar",
         "simple sidebar",
         "ng",
