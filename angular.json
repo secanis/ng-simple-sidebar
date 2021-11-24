@@ -28,16 +28,6 @@
                         "tsConfig": "projects/ng-simple-sidebar/tsconfig.spec.json",
                         "karmaConfig": "projects/ng-simple-sidebar/karma.conf.js"
                     }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "projects/ng-simple-sidebar/tsconfig.lib.json",
-                            "projects/ng-simple-sidebar/tsconfig.spec.json"
-                        ],
-                        "exclude": ["**/node_modules/**"]
-                    }
                 }
             }
         },
@@ -56,7 +46,6 @@
                         "main": "projects/ng-simple-sidebar-showcase/src/main.ts",
                         "polyfills": "projects/ng-simple-sidebar-showcase/src/polyfills.ts",
                         "tsConfig": "projects/ng-simple-sidebar-showcase/tsconfig.app.json",
-                        "aot": true,
                         "assets": [
                             "projects/ng-simple-sidebar-showcase/src/favicon.ico",
                             "projects/ng-simple-sidebar-showcase/src/assets"
@@ -64,7 +53,13 @@
                         "styles": [
                             "projects/ng-simple-sidebar-showcase/src/styles.css"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -129,19 +124,6 @@
                             "projects/ng-simple-sidebar-showcase/src/styles.css"
                         ],
                         "scripts": []
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "projects/ng-simple-sidebar-showcase/tsconfig.app.json",
-                            "projects/ng-simple-sidebar-showcase/tsconfig.spec.json",
-                            "projects/ng-simple-sidebar-showcase/e2e/tsconfig.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**"
-                        ]
                     }
                 },
                 "e2e": {
