@@ -6,12 +6,12 @@
 html,
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .content-wrapper {
     display: flex;
-    width: 100%;
+    width: 100vh;
     flex-wrap: nowrap;
 }
 
@@ -34,6 +34,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 50%;
 }
 
 .docs-methods article {
