@@ -25,10 +25,10 @@
     },
     "homepage": "https://secanis.github.io/ng-simple-sidebar",
     "peerDependencies": {
-        "@angular/common": "~13.3.1",
-        "@angular/core": "~13.3.1"
+        "@angular/common": "14 - 17",
+        "@angular/core": "14 - 17"
     },
     "dependencies": {
-        "tslib": "^2.3.1"
+        "tslib": "^2.6.2"
     }
 }
