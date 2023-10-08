@@ -140,6 +140,5 @@
                 }
             }
         }
-    },
-    "defaultProject": "ng-simple-sidebar"
+    }
 }
