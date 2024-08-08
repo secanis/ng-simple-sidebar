@@ -1,17 +1,17 @@
 {
     "name": "ng-simple-sidebar",
-    "version": "4.5.0",
+    "version": "4.6.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/secanis/ng-simple-sidebar.git"
     },
     "keywords": [
         "angular",
-        "angular 12",
-        "angular 13",
         "angular 14",
         "angular 15",
         "angular 16",
+        "angular 17",
+        "angular 18",
         "sidebar",
         "simple sidebar",
         "ng",
@@ -25,8 +25,8 @@
     },
     "homepage": "https://secanis.github.io/ng-simple-sidebar",
     "peerDependencies": {
-        "@angular/common": "14 - 17",
-        "@angular/core": "14 - 17"
+        "@angular/common": "14 - 18",
+        "@angular/core": "14 - 18"
     },
     "dependencies": {
         "tslib": "^2.6.2"
