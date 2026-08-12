@@ -1,9 +1,9 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: cimg/node:20.16
+    - image: cimg/node:24
 
 jobs:
   build:
@@ -61,7 +61,6 @@ jobs:
           command: npm run gh-pages
 
 workflows:
-  version: 2
   lib-build:
     jobs:
       - build
