@@ -1,29 +1,32 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SimpleSidebarItem } from '../models/sidebar-item';
-import { SimpleSidebarColors, SimpleSidebarConfiguration } from '../models/sidebar-configuration';
+import { SimpleSidebarAbstractColors, SimpleSidebarConfiguration } from '../models/sidebar-configuration';
+import { SidebarItemComponent } from './sidebar-item.component';
 
 @Component({
     selector: 'lib-sidebar-container',
     template: `
         <div class="sidebar-container">
             <!-- top side menu entries -->
-            <lib-sidebar-item
-                *ngFor="let item of itemsTop"
-                [item]="item"
-                [colors]="colors"
-                [isOpen]="isOpen"
-                (clickAction)="linkClickAction()"
-            ></lib-sidebar-item>
+            @for (item of itemsTop; track item.name) {
+                <lib-sidebar-item
+                    [item]="item"
+                    [colors]="colors"
+                    [isOpen]="isOpen"
+                    (clickAction)="linkClickAction()"
+                ></lib-sidebar-item>
+            }
         </div>
         <div class="sidebar-container sidebar-container-end">
             <!-- bottom side menu entries -->
-            <lib-sidebar-item
-                *ngFor="let item of itemsBottom"
-                [item]="item"
-                [colors]="colors"
-                [isOpen]="isOpen"
-                (clickAction)="linkClickAction()"
-            ></lib-sidebar-item>
+            @for (item of itemsBottom; track item.name) {
+                <lib-sidebar-item
+                    [item]="item"
+                    [colors]="colors"
+                    [isOpen]="isOpen"
+                    (clickAction)="linkClickAction()"
+                ></lib-sidebar-item>
+            }
         </div>
     `,
     styles: [
@@ -32,14 +35,16 @@ import { SimpleSidebarColors, SimpleSidebarConfiguration } from '../models/sideb
                 padding-top: 20px;
             }
         `
-    ]
+    ],
+    standalone: true,
+    imports: [SidebarItemComponent],
 })
 export class SidebarContainerComponent {
-    @Input() configuration: SimpleSidebarConfiguration;
-    @Input() itemsTop: SimpleSidebarItem[];
-    @Input() itemsBottom: SimpleSidebarItem[];
-    @Input() isOpen: boolean;
-    @Input() colors: SimpleSidebarColors;
+    @Input() configuration!: SimpleSidebarConfiguration;
+    @Input() itemsTop: SimpleSidebarItem[] = [];
+    @Input() itemsBottom: SimpleSidebarItem[] = [];
+    @Input() isOpen = false;
+    @Input() colors!: SimpleSidebarAbstractColors;
 
     @Output() closeDock: EventEmitter<boolean> = new EventEmitter<boolean>();
 

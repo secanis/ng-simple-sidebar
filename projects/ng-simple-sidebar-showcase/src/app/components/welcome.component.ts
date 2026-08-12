@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
     SimpleSidebarItem,
+    SimpleSidebarConfiguration,
     NgSimpleSidebarService
 } from 'projects/ng-simple-sidebar/src/public-api';
 
 @Component({
     selector: 'app-welcome',
     templateUrl: './welcome.component.html',
-    styles: []
+    styles: [],
+    standalone: true,
+    imports: [CommonModule],
 })
 export class WelcomeComponent implements OnInit {
-    sidebarItems: SimpleSidebarItem[];
+    private ngSimpleSidebarService = inject(NgSimpleSidebarService);
+
+    sidebarItems: SimpleSidebarItem[] = [];
     sidebarConfig$ = this.ngSimpleSidebarService.getConfiguration();
     isOpen$ = this.ngSimpleSidebarService.isOpen();
-
-    constructor(private ngSimpleSidebarService: NgSimpleSidebarService) {}
 
     ngOnInit() {
         this.sidebarItems = [
@@ -41,33 +45,44 @@ export class WelcomeComponent implements OnInit {
         this.ngSimpleSidebarService.addItems(this.sidebarItems);
     }
 
-    toggleDarkMode() {
+    private getConfig(): SimpleSidebarConfiguration {
         const conf = this.sidebarConfig$.getValue();
+        if (!conf) {
+            throw new Error('Sidebar configuration is not set');
+        }
+        return conf;
+    }
+
+    toggleDarkMode() {
+        const conf = this.getConfig();
+        conf.colors = conf.colors || {};
         conf.colors.darkMode = !conf.colors.darkMode;
         this.ngSimpleSidebarService.configure(conf);
     }
 
     toggleCloseAfterClick() {
-        const conf = this.sidebarConfig$.getValue();
+        const conf = this.getConfig();
         conf.closeAfterClick = !conf.closeAfterClick;
         this.ngSimpleSidebarService.configure(conf);
     }
 
     toggleSidebarState() {
-        this.isOpen$.getValue()
-            ? this.ngSimpleSidebarService.close()
-            : this.ngSimpleSidebarService.open();
+        if (this.isOpen$.getValue()) {
+            this.ngSimpleSidebarService.close();
+        } else {
+            this.ngSimpleSidebarService.open();
+        }
     }
 
     toggleMenuButtons() {
-        const conf = this.sidebarConfig$.getValue();
-        conf.openIcon = conf.openIcon ? null : 'las la-bars';
-        conf.closeIcon = conf.closeIcon ? null : 'las la-times';
+        const conf = this.getConfig();
+        conf.openIcon = conf.openIcon ? undefined : 'las la-bars';
+        conf.closeIcon = conf.closeIcon ? undefined : 'las la-times';
         this.ngSimpleSidebarService.configure(conf);
     }
 
     toggleMobileView() {
-        const conf = this.sidebarConfig$.getValue();
+        const conf = this.getConfig();
         conf.mobile = !conf.mobile;
         this.ngSimpleSidebarService.configure(conf);
     }

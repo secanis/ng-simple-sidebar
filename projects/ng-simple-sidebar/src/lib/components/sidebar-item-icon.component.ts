@@ -4,8 +4,12 @@ import { SimpleSidebarItem } from '../models/sidebar-item';
 @Component({
     selector: 'lib-sidebar-item-icon',
     template: `
-        <i *ngIf="item.icon" class="menu-icon-item" [class]="item.icon"></i>
-        <span *ngIf="isOpen" class="menu-item-label">{{ item.name }}</span>
+        @if (item.icon) {
+            <i class="menu-icon-item" [class]="item.icon"></i>
+        }
+        @if (isOpen) {
+            <span class="menu-item-label">{{ item.name }}</span>
+        }
     `,
     styles: [
         `
@@ -22,9 +26,10 @@ import { SimpleSidebarItem } from '../models/sidebar-item';
                 vertical-align: super;
             }
         `
-    ]
+    ],
+    standalone: true,
 })
 export class SidebarItemIconComponent {
-    @Input() item: SimpleSidebarItem;
-    @Input() isOpen: boolean;
+    @Input() item!: SimpleSidebarItem;
+    @Input() isOpen = false;
 }

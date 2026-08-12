@@ -5,8 +5,10 @@
         "declarationMap": true,
         "declaration": true,
         "inlineSources": true,
-        "types": [],
-        "lib": ["dom", "es2018"]
+        "types": ["jest", "node"],
+        "lib": ["dom", "es2022"],
+        "module": "esnext",
+        "moduleResolution": "bundler"
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,

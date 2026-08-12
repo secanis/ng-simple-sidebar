@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import {
     SimpleSidebarItem,
     SimpleSidebarConfiguration,
     NgSimpleSidebarService,
 } from 'projects/ng-simple-sidebar/src/public-api';
+import { NgSimpleSidebarComponent } from 'projects/ng-simple-sidebar/src/public-api';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, NgSimpleSidebarComponent],
 })
 export class AppComponent {
     private defaultSidebarItems: SimpleSidebarItem[];
@@ -21,10 +26,12 @@ export class AppComponent {
         mobileTitle: 'I am a mobile title',
     };
 
+    private ngSimpleSidebarService = inject(NgSimpleSidebarService);
+
     isOpen = false;
     configState$ = this.ngSimpleSidebarService.getConfiguration();
 
-    constructor(private ngSimpleSidebarService: NgSimpleSidebarService) {
+    constructor() {
         this.defaultSidebarItems = [
             {
                 name: 'Welcome',
