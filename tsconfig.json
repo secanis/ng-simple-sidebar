@@ -8,14 +8,14 @@
       "declaration": false,
       "experimentalDecorators": true,
       "module": "esnext",
-      "moduleResolution": "node",
+      "moduleResolution": "bundler",
       "importHelpers": true,
       "target": "ES2022",
       "typeRoots": [
         "node_modules/@types"
       ],
       "lib": [
-        "es2018",
+        "es2022",
         "dom"
       ],
       "paths": {
@@ -24,10 +24,18 @@
           "dist/ng-simple-sidebar"
         ]
       },
-      "useDefineForClassFields": false
+      "useDefineForClassFields": false,
+      "strict": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      "forceConsistentCasingInFileNames": true,
+      "ignoreDeprecations": "6.0"
     },
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
-        "strictInjectionParameters": true
+        "strictInjectionParameters": true,
+        "strictTemplates": true,
+        "enableControlFlowAnalysis": true
     }
 }

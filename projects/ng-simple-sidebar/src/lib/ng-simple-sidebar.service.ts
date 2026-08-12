@@ -15,7 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NgSimpleSidebarService {
     private STATE_CHANGE$ = new BehaviorSubject<boolean>(false);
-    private CONFIGURATION$ = new BehaviorSubject<SimpleSidebarConfiguration>(
+    private CONFIGURATION$ = new BehaviorSubject<SimpleSidebarConfiguration | null>(
         null
     );
     private ITEMS_TOP$ = new BehaviorSubject<SimpleSidebarItem[]>([]);
@@ -37,7 +37,7 @@ export class NgSimpleSidebarService {
         this.CONFIGURATION$.next(this.setConfigDefaults(configuration));
     }
 
-    getConfiguration(): BehaviorSubject<SimpleSidebarConfiguration> {
+    getConfiguration(): BehaviorSubject<SimpleSidebarConfiguration | null> {
         return this.CONFIGURATION$;
     }
 
@@ -74,7 +74,7 @@ export class NgSimpleSidebarService {
                 ? configuration.mobile
                 : false,
             position: configuration.position || 'sticky',
-            mobileTitle: configuration.mobileTitle || null,
+            mobileTitle: configuration.mobileTitle || undefined,
         };
     }
 

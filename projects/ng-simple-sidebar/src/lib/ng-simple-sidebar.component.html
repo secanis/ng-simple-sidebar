@@ -1,33 +1,38 @@
-<div
-    *ngIf="configuration$ | async as conf"
-    class="dock"
-    [ngClass]="{ 'dock-open': isOpen$ | async, 'dock-mobile': conf.mobile }"
-    [ngStyle]="dockStyle$ | async"
->
-    <span *ngIf="conf.mobile && conf.mobileTitle">{{ conf.mobileTitle }}</span>
+@if (configuration$ | async; as conf) {
+    <div
+        class="dock"
+        [ngClass]="{ 'dock-open': isOpen$ | async, 'dock-mobile': conf.mobile }"
+        [ngStyle]="dockStyle$ | async"
+    >
+        @if (conf.mobile && conf.mobileTitle) {
+            <span>{{ conf.mobileTitle }}</span>
+        }
 
-    <!-- default items, like open/bottom buttons -->
-    <div class="sidebar-header">
-        <i
-            *ngIf="(isOpen$ | async) && conf.closeIcon"
-            class="menu-opener pointer"
-            [class]="conf.closeIcon"
-            (click)="closeSidebar()"
-        ></i>
-        <i
-            *ngIf="!(isOpen$ | async) && conf.openIcon"
-            class="menu-opener pointer"
-            [class]="conf.openIcon"
-            (click)="openSidebar()"
-        ></i>
+        <!-- default items, like open/bottom buttons -->
+        <div class="sidebar-header">
+            @if ((isOpen$ | async) && conf.closeIcon) {
+                <i
+                    class="menu-opener pointer"
+                    [class]="conf.closeIcon"
+                    (click)="closeSidebar()"
+                ></i>
+            }
+            @if ((isOpen$ | async) === false && conf.openIcon) {
+                <i
+                    class="menu-opener pointer"
+                    [class]="conf.openIcon"
+                    (click)="openSidebar()"
+                ></i>
+            }
+        </div>
+        <lib-sidebar-container
+            [configuration]="conf"
+            [itemsBottom]="(itemsBottom$ | async) || []"
+            [itemsTop]="(itemsTop$ | async) || []"
+            [isOpen]="(isOpen$ | async) || false"
+            [colors]="(colors$ | async)!"
+            [ngStyle]="sidedbarStyle$ | async"
+            (closeDock)="closeSidebar()"
+        ></lib-sidebar-container>
     </div>
-    <lib-sidebar-container
-        [configuration]="configuration$ | async"
-        [itemsBottom]="itemsBottom$ | async"
-        [itemsTop]="itemsTop$ | async"
-        [isOpen]="isOpen$ | async"
-        [colors]="colors$ | async"
-        [ngStyle]="sidedbarStyle$ | async"
-        (closeDock)="closeSidebar()"
-    ></lib-sidebar-container>
-</div>
+}

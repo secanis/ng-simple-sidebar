@@ -5,15 +5,18 @@ import {
     SimpleChanges,
     HostListener,
     AfterContentChecked,
+    inject,
 } from '@angular/core';
 import { map, filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 import { SimpleSidebarItem } from './models/sidebar-item';
 import { SimpleSidebarConfiguration } from './models/sidebar-configuration';
 import { NgSimpleSidebarService } from './ng-simple-sidebar.service';
 import { combineLatest, Subject } from 'rxjs';
+import { SidebarContainerComponent } from './components/sidebar-container.component';
 
-const PADDING = 30; // reduce amount because of dock padding
+const PADDING = 30;
 const DEFAULT_WIDTH = '250px';
 const DEFAULT_DOCK_WIDTH = '30px';
 
@@ -26,12 +29,16 @@ interface Dimensions {
     selector: 'lib-ng-simple-sidebar',
     templateUrl: './ng-simple-sidebar.component.html',
     styleUrls: ['./ng-simple-sidebar.component.css'],
+    standalone: true,
+    imports: [CommonModule, SidebarContainerComponent],
 })
 export class NgSimpleSidebarComponent
     implements OnChanges, AfterContentChecked {
     @Input() isOpen = false;
     @Input() items: SimpleSidebarItem[] = [];
-    @Input() configuration: SimpleSidebarConfiguration;
+    @Input() configuration?: SimpleSidebarConfiguration;
+
+    private simpleSidebarService = inject(NgSimpleSidebarService);
 
     configuration$ = this.simpleSidebarService.getConfiguration();
     isOpen$ = this.simpleSidebarService.isOpen();
@@ -42,14 +49,21 @@ export class NgSimpleSidebarComponent
 
     colors$ = this.configuration$.pipe(
         map((c) => {
+            if (!c || !c.colors) {
+                return {
+                    darkMode: false,
+                    fColor: '#000',
+                    bColor: '#eee',
+                };
+            }
             return {
-                darkMode: c.colors.darkMode,
+                darkMode: c.colors.darkMode || false,
                 fColor: c.colors.darkMode
-                    ? c.colors.darkModeFont
-                    : c.colors.font,
+                    ? c.colors.darkModeFont || '#fff'
+                    : c.colors.font || '#000',
                 bColor: c.colors.darkMode
-                    ? c.colors.darkModeBackground
-                    : c.colors.background,
+                    ? c.colors.darkModeBackground || '#333'
+                    : c.colors.background || '#eee',
             };
         })
     );
@@ -61,7 +75,7 @@ export class NgSimpleSidebarComponent
         this.dimensions$,
     ]).pipe(
         map((r) => ({ conf: r[0], colors: r[1], isOpen: r[2], dim: r[3] })),
-        filter((ctx) => ctx.conf.mobile),
+        filter((ctx): ctx is { conf: SimpleSidebarConfiguration; colors: { darkMode: boolean; fColor: string; bColor: string }; isOpen: boolean; dim: Dimensions } => !!ctx.conf?.mobile),
         map((ctx) => {
             return {
                 'background-color': ctx.colors.bColor,
@@ -79,14 +93,18 @@ export class NgSimpleSidebarComponent
     ]).pipe(
         map((r) => ({ conf: r[0], colors: r[1], isOpen: r[2], dim: r[3] })),
         map((ctx) => {
+            const conf = ctx.conf;
+            if (!conf) {
+                return {};
+            }
             return {
                 'background-color': ctx.colors.bColor,
                 color: ctx.colors.fColor,
-                height: ctx.conf.mobile
+                height: conf.mobile
                     ? DEFAULT_DOCK_WIDTH
                     : `${ctx.dim.innerHeight}px`,
-                width: this.calcDockWidth(ctx.conf, ctx.isOpen, ctx.dim),
-                position: ctx.conf.mobile ? 'fixed' : ctx.conf.position,
+                width: this.calcDockWidth(conf, ctx.isOpen, ctx.dim),
+                position: conf.mobile ? 'fixed' : conf.position,
             };
         })
     );
@@ -96,24 +114,29 @@ export class NgSimpleSidebarComponent
         this.calculateDimensions();
     }
 
-    constructor(private simpleSidebarService: NgSimpleSidebarService) {
+    constructor() {
         this.calculateDimensions();
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.isOpen && changes.isOpen.hasOwnProperty('currentValue')) {
-            changes.isOpen.currentValue
-                ? this.simpleSidebarService.close()
-                : this.simpleSidebarService.open();
+        const isOpenChange = changes['isOpen'];
+        if (isOpenChange && isOpenChange.hasOwnProperty('currentValue')) {
+            if (isOpenChange.currentValue) {
+                this.simpleSidebarService.close();
+            } else {
+                this.simpleSidebarService.open();
+            }
         }
 
-        if (changes.items && changes.items.currentValue) {
-            this.simpleSidebarService.addItems(changes.items.currentValue);
+        const itemsChange = changes['items'];
+        if (itemsChange && itemsChange.currentValue) {
+            this.simpleSidebarService.addItems(itemsChange.currentValue);
         }
 
-        if (changes.configuration && changes.configuration.currentValue) {
+        const configChange = changes['configuration'];
+        if (configChange && configChange.currentValue) {
             this.simpleSidebarService.configure(
-                changes.configuration.currentValue
+                configChange.currentValue
             );
         }
     }

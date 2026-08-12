@@ -1,39 +1,44 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SimpleSidebarItem } from '../models/sidebar-item';
 import { SimpleSidebarAbstractColors } from '../models/sidebar-configuration';
+import { SidebarItemIconComponent } from './sidebar-item-icon.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'lib-sidebar-item',
     template: `
-        <a
-            *ngIf="item.routerLink"
-            (click)="clickAction.emit()"
-            [ngStyle]="{ color: colors.fColor }"
-            [ngClass]="{ 'dock-open-item': isOpen }"
-            [routerLink]="item.routerLink"
-            [title]="item.name"
-            class="menu-item pointer"
-        >
-            <lib-sidebar-item-icon
-                [item]="item"
-                [isOpen]="isOpen"
-            ></lib-sidebar-item-icon>
-        </a>
-        <a
-            *ngIf="item.url"
-            (click)="clickAction.emit()"
-            [ngStyle]="{ color: colors.fColor }"
-            [ngClass]="{ 'dock-open-item': isOpen }"
-            [target]="item.target"
-            [href]="item.url"
-            [title]="item.name"
-            class="menu-item pointer"
-        >
-            <lib-sidebar-item-icon
-                [item]="item"
-                [isOpen]="isOpen"
-            ></lib-sidebar-item-icon>
-        </a>
+        @if (item.routerLink) {
+            <a
+                (click)="clickAction.emit()"
+                [ngStyle]="{ color: colors.fColor }"
+                [ngClass]="{ 'dock-open-item': isOpen }"
+                [routerLink]="item.routerLink"
+                [title]="item.name"
+                class="menu-item pointer"
+            >
+                <lib-sidebar-item-icon
+                    [item]="item"
+                    [isOpen]="isOpen"
+                ></lib-sidebar-item-icon>
+            </a>
+        }
+        @if (item.url) {
+            <a
+                (click)="clickAction.emit()"
+                [ngStyle]="{ color: colors.fColor }"
+                [ngClass]="{ 'dock-open-item': isOpen }"
+                [target]="item.target"
+                [href]="item.url"
+                [title]="item.name"
+                class="menu-item pointer"
+            >
+                <lib-sidebar-item-icon
+                    [item]="item"
+                    [isOpen]="isOpen"
+                ></lib-sidebar-item-icon>
+            </a>
+        }
     `,
     styles: [
         `
@@ -65,12 +70,14 @@ import { SimpleSidebarAbstractColors } from '../models/sidebar-configuration';
                 min-width: 200px;
             }
         `
-    ]
+    ],
+    standalone: true,
+    imports: [CommonModule, RouterModule, SidebarItemIconComponent],
 })
 export class SidebarItemComponent {
-    @Input() item: SimpleSidebarItem;
-    @Input() colors: SimpleSidebarAbstractColors;
-    @Input() isOpen: boolean;
+    @Input() item!: SimpleSidebarItem;
+    @Input() colors!: SimpleSidebarAbstractColors;
+    @Input() isOpen = false;
 
     @Output() clickAction: EventEmitter<void> = new EventEmitter<void>();
 }

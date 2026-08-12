@@ -42,30 +42,20 @@
 <h3>Library</h3>
 <section class="docs-methods">
     <article>
-        <b>Include Lib in Module</b>
-        <pre>
-...
-import &#x7B; NgSimpleSidebarModule &#x7D; from &#x26;#x27;ng-simple-sidebar&#x26;#x27;;
-
-&#64;NgModule(&#x7B;
-    declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, NgSimpleSidebarModule],
-    providers: [],
-    bootstrap: [AppComponent]
-&#x7D;)
-export class AppModule &#x7B;&#x7D;
-</pre
-        >
-    </article>
-    <article>
         <b>Include Lib in Component</b>
         <pre>
 ...
-constructor(private ngSimpleSidebarService: NgSimpleSidebarService) &#x7B;
-    this.ngSimpleSidebarService.addItems(this.sidebarItems);
-    this.ngSimpleSidebarService.configure(this.sidebarConfig);
+import &#x7B; NgSimpleSidebarComponent &#x7D; from &#x26;#x27;ng-simple-sidebar&#x26;#x27;;
+
+&#64;Component(&#x7B;
+    selector: &#x26;#x27;app-root&#x26;#x27;,
+    template: &#x26;#x27;&#x3C;lib-ng-simple-sidebar&#x3E;&#x3C;/lib-ng-simple-sidebar&#x3E;&#x26;#x27;,
+    standalone: true,
+    imports: [NgSimpleSidebarComponent],
+&#x7D;)
+export class AppComponent &#x7B;
+    ...
 &#x7D;
-...
 </pre
         >
     </article>
@@ -85,7 +75,7 @@ addItems(items: SimpleSidebarItem[])
         <b>Getter: All Methods are returning a BehaviorSubject</b>
         <pre>
 isOpen(): BehaviorSubject&#x3C;boolean&#x3E;
-getConfiguration(): BehaviorSubject&#x3C;SimpleSidebarConfiguration&#x3E;
+getConfiguration(): BehaviorSubject&#x3C;SimpleSidebarConfiguration | null&#x3E;
 getTopsideItems(): BehaviorSubject&#x3C;SimpleSidebarItem[]&#x3E;
 getBotsideItems(): BehaviorSubject&#x3C;SimpleSidebarItem[]&#x3E;
                 </pre

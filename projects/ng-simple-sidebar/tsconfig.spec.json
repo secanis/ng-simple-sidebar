@@ -2,7 +2,10 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/spec",
-        "types": ["jasmine", "node"]
+        "types": ["jest", "node"],
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "emitDecoratorMetadata": true
     },
     "files": ["src/test.ts"],
     "include": ["**/*.spec.ts", "**/*.d.ts"]
