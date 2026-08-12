@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: cimg/node:24
+    - image: cimg/node:24.19
 
 jobs:
   build:
