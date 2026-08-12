@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build:watch": "ng build --watch",
     "build:showcase": "ng build --configuration production --project ng-simple-sidebar-showcase",
+    "gh-pages": "gh-pages -d dist/ng-simple-sidebar-showcase",
     "build:lib": "ng build --configuration production --project ng-simple-sidebar",
     "postbuild:lib": "copyfiles *.md *.MD LICENSE ./dist/ng-simple-sidebar",
     "test": "jest --config projects/ng-simple-sidebar/jest.config.js",
