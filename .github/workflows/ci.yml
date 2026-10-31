@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build library
+        run: npm run build:lib
+
+      - name: Build showcase application
+        run: npm run build:showcase
+
+      - name: Upload library package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ng-simple-sidebar-dist
+          path: dist/ng-simple-sidebar
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload showcase application
+        uses: actions/upload-artifact@v4
+        with:
+          name: ng-simple-sidebar-showcase-dist
+          path: dist/ng-simple-sidebar-showcase
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    name: Publish to npm
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Download library package
+        uses: actions/download-artifact@v4
+        with:
+          name: ng-simple-sidebar-dist
+          path: dist/ng-simple-sidebar
+
+      - name: Publish package
+        working-directory: dist/ng-simple-sidebar
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  docs:
+    name: Deploy docs
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download showcase application
+        uses: actions/download-artifact@v4
+        with:
+          name: ng-simple-sidebar-showcase-dist
+          path: dist/ng-simple-sidebar-showcase
+
+      - name: Deploy docs to gh-pages branch
+        run: |
+          npx gh-pages -d dist/ng-simple-sidebar-showcase \
+            -r "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            -u "ci-build <ci-build@users.noreply.github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,7 +2,7 @@
 
 An easy library to implement asidebar with a mobile mode to your Angular app.
 
-[![CircleCI](https://circleci.com/gh/secanis/ng-simple-sidebar.svg?style=svg)](https://circleci.com/gh/secanis/ng-simple-sidebar)[![npm version](https://badge.fury.io/js/ng-simple-sidebar.svg)](https://badge.fury.io/js/ng-simple-sidebar)![typescript types](https://badgen.net/npm/types/ng-simple-sidebar)![npm license](https://badgen.net/npm/license/ng-simple-sidebar)
+[![CI](https://github.com/secanis/ng-simple-sidebar/actions/workflows/ci.yml/badge.svg)](https://github.com/secanis/ng-simple-sidebar/actions/workflows/ci.yml)[![npm version](https://badge.fury.io/js/ng-simple-sidebar.svg)](https://badge.fury.io/js/ng-simple-sidebar)![typescript types](https://badgen.net/npm/types/ng-simple-sidebar)![npm license](https://badgen.net/npm/license/ng-simple-sidebar)
 
 [![NPM](https://nodei.co/npm/ng-simple-sidebar.png?compact=true)](https://nodei.co/npm/ng-simple-sidebar/)
 
